@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Employee>
+
+
+    <h1 style="font-family:cursive;text-align:center; "> Display All Employees</h1>     <br />
+
+
+    @using (Html.BeginForm())
+    {
+        <div class="input-group"style="padding:10px" >
+            @Html.TextBox("SearchByName", null, new { @class = "form-control", @placeholder = "Search By Employee Name ...." })
+            <input type="submit" style="font-family:cursive; border-radius:10px ;margin-inline:10px;" value="Search " class=" btn btn-outline-primary" />
+            <a asp-action="Create" style="font-family:cursive; border-radius:10px;"  class="btn btn-outline-primary"> Add New  </a>
+
+        </div>
+    }
+
+    <table  style="margin:10px" class="table table-striped table-bordered table-hover  ">
+        <thead style="background-color:#0275d8; color:#f7f7f7 ;font-family:cursive;text-align:center;">
+            <tr>
+                <th>@Html.DisplayNameFor(Model => Model.EmployeeNumber)</th>
+                <th>@Html.DisplayNameFor(Model => Model.EmployeeName)</th>
+                <th>@Html.DisplayNameFor(Model => Model.DOB)</th>
+                <th>@Html.DisplayNameFor(Model => Model.HiringDate)</th>
+                <th>@Html.DisplayNameFor(Model => Model.GrossSalary)</th>
+                <th>@Html.DisplayNameFor(Model => Model.NetSalary)</th>
+                <th>@Html.DisplayNameFor(Model => Model.DepartmentName)</th>
+                <th></th>
+            </tr>
+
+        </thead>
+        <tbody style="font-family:cursive;text-align:center;">
+    @foreach (var item in Model)
+    {
+                <tr style="border-radius: 10px">
+                    <td>@Html.DisplayFor(modelitem => item.EmployeeNumber)</td>
+                    <td>@Html.DisplayFor(modelitem => item.EmployeeName)</td>
+                    <td>@Html.DisplayFor(modelitem => item.DOB)</td>
+                    <td>@Html.DisplayFor(modelitem => item.HiringDate)</td>
+                    <td>@Html.DisplayFor(modelitem => item.GrossSalary)</td>
+                    <td>@Html.DisplayFor(modelitem => item.NetSalary)</td>
+                    <td>@Html.DisplayFor(modelitem => item.DepartmentName)</td>
+                    <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId }, new { onclick = "return confirm ( 'Are You Sure ?');" })
+                    </td>
+
+                </tr>
+
+
+    }
+
+
+        </tbody>
+    </table>
+
